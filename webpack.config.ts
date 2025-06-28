@@ -1,8 +1,7 @@
 import path from "path";
-import { Configuration } from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 
-const config: Configuration = {
+const config = {
     mode: (process.env.NODE_ENV as "production" | "development" | undefined) ??
         "development",
     entry: "./src/entry.tsx",
@@ -36,7 +35,13 @@ const config: Configuration = {
             patterns: [{from: "src/public"}]
         })
     ],
-    watch: true
+    watch: true,
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, "out")
+        },
+        compress: true
+    }
 };
 
 export default config;

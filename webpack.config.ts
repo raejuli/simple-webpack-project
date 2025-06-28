@@ -8,7 +8,17 @@ const config: Configuration = {
     entry: "./src/entry.ts",
     devtool: process.env.NODE_ENV === "development" ? "source-map" : false,
     module: {
-
+        rules: [
+            {
+                test: /.tsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "ts-loader"
+                    }
+                ]
+            }
+        ]
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"]

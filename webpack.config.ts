@@ -5,7 +5,7 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 const config: Configuration = {
     mode: (process.env.NODE_ENV as "production" | "development" | undefined) ??
         "development",
-    entry: "./src/entry.ts",
+    entry: "./src/entry.tsx",
     devtool: process.env.NODE_ENV === "development" ? "source-map" : false,
     module: {
         rules: [
@@ -17,6 +17,10 @@ const config: Configuration = {
                         loader: "ts-loader"
                     }
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
             }
         ]
     },
